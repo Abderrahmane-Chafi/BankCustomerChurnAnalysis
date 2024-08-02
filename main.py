@@ -5,12 +5,11 @@ import os
 import pandas as pd
 import sklearn
 
-
 # Set the MLflow tracking URI
 os.environ["MLFLOW_TRACKING_URI"] = "https://dagshub.com/Abderrahmane-Chafi/BankCustomerChurnAnalysis.mlflow"
 
 # Load the model from MLflow
-run_id = "f2899e353ccf4092bcaf118f8ba09d1c"
+run_id = "c853c1833e6748f2bea280b1f8767c30"
 model_uri = f"runs:/{run_id}/sklearn-model"
 
 # Debug prints
@@ -49,7 +48,7 @@ def read_root():
 async def predict_churn(data: ChurnData):
     try:
         # Convert the input data to a DataFrame
-        input_df = pd.DataFrame([data.model_dump()])
+        input_df = pd.DataFrame([data.model_dump()]) #Why Use a DataFrame? Consistency with Model Input Requirements: Many machine learning models expect input data in a tabular format like a DataFrame.
         
         # Make prediction
         prediction = model.predict(input_df)
@@ -63,6 +62,9 @@ async def predict_churn(data: ChurnData):
         raise HTTPException(status_code=400, detail=str(e))
 
 if __name__ == "__main__":
+    #Uvicorn is a web server. It handles network communication - receiving requests from client applications 
+    # such as users' browsers and sending responses to them. It communicates with FastAPI using the Asynchronous 
+    # Server Gateway Interface (ASGI) - ASGI: a calling convention for web servers to forward requests to asynchronous-capable Python frameworks, and applications.
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
