@@ -9,7 +9,7 @@ import sklearn
 os.environ["MLFLOW_TRACKING_URI"] = "https://dagshub.com/Abderrahmane-Chafi/BankCustomerChurnAnalysis.mlflow"
 
 # Load the model from MLflow
-run_id = "c853c1833e6748f2bea280b1f8767c30"
+run_id = "d550c2df913b41278a106225d91a1e3f"
 model_uri = f"runs:/{run_id}/sklearn-model"
 
 # Debug prints
