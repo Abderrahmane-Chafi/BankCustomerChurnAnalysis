@@ -4,6 +4,11 @@ import mlflow.sklearn
 import os
 import pandas as pd
 import sklearn
+import fastapi
+import uvicorn
+import sklearn
+import mlflow
+import pydantic
 
 # Set the MLflow tracking URI
 os.environ["MLFLOW_TRACKING_URI"] = "https://dagshub.com/Abderrahmane-Chafi/BankCustomerChurnAnalysis.mlflow"
@@ -13,7 +18,13 @@ run_id = "d550c2df913b41278a106225d91a1e3f"
 model_uri = f"runs:/{run_id}/sklearn-model"
 
 # Debug prints
-print(sklearn.__version__)
+print(f"FastAPI: {fastapi.__version__}")
+print(f"Uvicorn: {uvicorn.__version__}")
+print(f"Pandas: {pd.__version__}")
+print(f"Scikit-Learn: {sklearn.__version__}")
+print(f"MLflow: {mlflow.__version__}")
+print(f"Pydantic: {pydantic.__version__}")
+
 print("MLflow tracking URI:", mlflow.get_tracking_uri())
 print("Model URI:", model_uri)
 
@@ -61,10 +72,4 @@ async def predict_churn(data: ChurnData):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-if __name__ == "__main__":
-    #Uvicorn is a web server. It handles network communication - receiving requests from client applications 
-    # such as users' browsers and sending responses to them. It communicates with FastAPI using the Asynchronous 
-    # Server Gateway Interface (ASGI) - ASGI: a calling convention for web servers to forward requests to asynchronous-capable Python frameworks, and applications.
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
 
