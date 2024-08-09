@@ -72,4 +72,10 @@ async def predict_churn(data: ChurnData):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+if __name__ == "__main__":
+    #Uvicorn is a web server. It handles network communication - receiving requests from client applications 
+    # such as users' browsers and sending responses to them. It communicates with FastAPI using the Asynchronous 
+    # Server Gateway Interface (ASGI) - ASGI: a calling convention for web servers to forward requests to asynchronous-capable Python frameworks, and applications.
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
