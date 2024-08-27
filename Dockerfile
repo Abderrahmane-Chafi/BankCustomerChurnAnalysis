@@ -15,3 +15,5 @@ EXPOSE 8000
 
 # Run the application using uvicorn
 CMD python app/main.py
+
+
